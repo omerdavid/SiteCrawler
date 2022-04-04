@@ -1,6 +1,6 @@
 # Site Crawler
 
-This project crawls `https://pastes.com`
+This project crawls `https://pastes.com` with interval of 2 seconds and store the new pastes into a local database (sqlite).
 
 
 ## Installation
