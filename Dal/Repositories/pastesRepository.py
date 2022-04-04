@@ -32,7 +32,9 @@ class PastesRepository(RepositoryBase):
     def isPasteExist(self, paste: PasteModel):
         try:
             con = self.create_conection()
-            query = f"Select COUNT(ps.Id) from Pastes ps where author='{paste.Author}' and Date='{paste.Date}' and Title='{paste.Title}' "
+            query = "Select COUNT(ps.Id) from Pastes ps where author="
+            f"'{paste.Author}' and Date='{paste.Date}' and "
+            f"Title='{paste.Title}'"
             pasteCount = con.execute(query).fetchone()
             return pasteCount[0] > 0
         except Exception as e:
