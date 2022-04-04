@@ -109,3 +109,4 @@ dmypy.json
 
 # Custom
 *.log
+Db/*
