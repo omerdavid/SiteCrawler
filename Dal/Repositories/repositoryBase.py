@@ -15,13 +15,16 @@ class RepositoryBase:
             connection_string = 'db/pastes.db'
         self.connection_string = connection_string
 
+    # create and return db connection instance
     def create_conection(self):
         return sqlite3.connect(self.connection_string)
 
+    # abstract method to implement by inheritor, uses to add new Entity
     @abstractmethod
     def add(self, url):
         pass
 
+    # abstract method to implement by inheritor, uses to get all Entity records
     @abstractmethod
     def get(self):
         pass

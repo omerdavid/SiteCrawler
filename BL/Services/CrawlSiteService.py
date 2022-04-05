@@ -25,11 +25,14 @@ class CrawlSiteService(CrawlSitesServiceBase):
 
     def CrawlSites(self):
         try:
+            # get site list to crawl from db
             self.__sites = self.__getSitesList()
 
             while True:
                 time.sleep(2)
                 for site in self.__sites:
+                    # creating the site handler to handle
+                    # scraping procees per site
                     crawlerHandler = SiteCrawlerHandler(
                         site)
                     print(f'Start scan :{site.Url}')

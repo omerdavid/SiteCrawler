@@ -19,11 +19,22 @@ class SiteCrawlerHandler:
 
     def CrawlSite(self):
         try:
+            # sending ajax request to get site html
             siteContent = requests.get(self.__site.Url)
+
+            # parsing the html to an object document for data to be extracted
             tree = html.fromstring(siteContent.content)
+
+            # extracting the pastes anchor tags from main/home page
+            # in order to get a single paste data from the paste specific page
             pastesLinks = self.__extractPastesLinksFromHtml(tree)
+
             pastes = self.__buildPastesBySpecificPageLink(pastesLinks)
+
+            # filter already existing pastes
             newPastes = self.__filterNewPastes(pastes)
+
+            # adding new pastes to db
             self.__addNewpastes(newPastes)
         except Exception as e:
             self.logger.error(e)
@@ -40,10 +51,16 @@ class SiteCrawlerHandler:
             pastes = []
             pasteBuilder = PasteBuilder()
             paramRepo = NormalizeParamRepository()
+
+            # getting a ready list from db to normalize param
+            # which considered as "same value"
             normalizeParamList = paramRepo.get()
             for htmlAnchorTag in pastesLinks:
                 pasteSpecificPageTree = self.__getPasteSpecificPage(
                     htmlAnchorTag)
+
+                # extract and parse paste data from html using dedicated
+                # paste builder which returns a ready PasteModel
                 paste = pasteBuilder.Build(
                     pasteSpecificPageTree, normalizeParamList)
                 pastes.append(paste)

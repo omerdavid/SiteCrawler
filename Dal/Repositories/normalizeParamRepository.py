@@ -6,6 +6,7 @@ from Dal.Repositories.repositoryBase import RepositoryBase
 
 class NormalizeParamRepository(RepositoryBase):
 
+    # adding new Entity to db
     def add(self, param):
         try:
             con = self.create_conection()
@@ -18,6 +19,7 @@ class NormalizeParamRepository(RepositoryBase):
         finally:
             con.close()
 
+    # get all Entity records
     def get(self):
         try:
             con = self.create_conection()
