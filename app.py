@@ -8,7 +8,7 @@ if __name__ == "__main__":
     try:
         crawl = CrawlSiteService()
         crawl.CrawlSites()
-        
+
     except Exception as e:
         logger = LogService()
         logger.error(e)

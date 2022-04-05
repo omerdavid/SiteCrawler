@@ -43,7 +43,8 @@ class PasteBuilder(BuilderBase):
 
     def __normalizeName(self, normalizeParamList, name, paramType):
         try:
-            # filter normalizeParamList by paramType ex:Author or Title from list
+            # filter normalizeParamList by paramType
+            # ex:Author or Title from list
 
             paramTypeList = filter(
                 lambda p: p.ParamType == paramType, normalizeParamList)

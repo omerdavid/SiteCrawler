@@ -30,7 +30,6 @@ class CrawlSiteService(CrawlSitesServiceBase):
             while True:
                 time.sleep(2)
                 for site in self.__sites:
-                    
                     crawlerHandler = SiteCrawlerHandler(
                         site)
                     print(f'Start scan :{site.Url}')

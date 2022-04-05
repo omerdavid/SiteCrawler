@@ -10,7 +10,8 @@ class NormalizeParamRepository(RepositoryBase):
         try:
             con = self.create_conection()
             con.execute(
-                f"Insert INTO NormalizeParam VALUES ('{param.Id}','{param.Name}','{param.type}')")
+                "Insert INTO NormalizeParam VALUES "
+                f"('{param.Id}','{param.Name}','{param.type}')")
             return con.lastrowid
         except Exception as e:
             self.logger.error(e)
